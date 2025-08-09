@@ -33,7 +33,7 @@ export default async function Layout({
 
 
   return (
-    <div className="grid grid-cols-12 gap-5 h-[80vh]">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 h-[80vh]">
       <div className="col-span-3">
         <MemberSidebar
           member={member}

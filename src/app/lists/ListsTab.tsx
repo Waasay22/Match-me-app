@@ -53,40 +53,40 @@ export default function ListsTab({
 
   return (
     <div className="flex w-full flex-col mt-10 gap-5">
-      <Tabs
-        aria-label="Like tabs"
-        items={tabs}
-        color="default"
-        onSelectionChange={(key) =>
-          handleTabChange(key)
-        }
-      >
-        {(item) => (
-          <Tab key={item.id} title={item.label}>
-            {isPending ? (
-              <LoadingComponent />
-            ) : (
-              <>
-                {members.length > 0 ? (
-                  <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8">
-                    {members.map((member) => (
-                      <MemberCard
-                        key={member.id}
-                        member={member}
-                        likeIds={likeIds}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <div>
-                    No members for this filter
-                  </div>
-                )}
-              </>
-            )}
-          </Tab>
-        )}
-      </Tabs>
+     <Tabs
+  aria-label="Like tabs"
+  items={tabs}
+  color="default"
+  onSelectionChange={(key) => handleTabChange(key)}
+  classNames={{
+    tabList: "flex flex-col sm:flex-row w-full gap-2 sm:gap-4", // column on mobile, row on sm+
+    tab: "flex-1", // make tabs expand equally in row/column
+  }}
+>
+  {(item) => (
+    <Tab key={item.id} title={item.label}>
+      {isPending ? (
+        <LoadingComponent />
+      ) : (
+        <>
+          {members.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-8">
+              {members.map((member) => (
+                <MemberCard
+                  key={member.id}
+                  member={member}
+                  likeIds={likeIds}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>No members for this filter</div>
+          )}
+        </>
+      )}
+    </Tab>
+  )}
+</Tabs>
     </div>
   );
 }

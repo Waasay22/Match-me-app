@@ -56,7 +56,7 @@ export default function MemberCard({
         </div>
       </div>
       <CardFooter className="flex justify-start bg-black overflow-hidden absolute bottom-0 z-10 bg-dark-gradient">
-        <div className="flex flex-col text-white">
+        <div className="flex flex-col text-black">
           <span className="font-semibold">
             {member.name},{" "}
             {calculateAge(member.dateOfBirth)}

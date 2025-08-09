@@ -15,7 +15,7 @@ searchParams: Promise<{ container: string }>;
     );
 
   return (
-    <div className="grid grid-cols-12 gap-5 h-[80vh] mt-10">
+    <div className="grid grid-cols-1 md:grid-cols-12 gap-5 h-[80vh] mt-10">
       <div className="col-span-2">
         <MessageSidebar />
       </div>

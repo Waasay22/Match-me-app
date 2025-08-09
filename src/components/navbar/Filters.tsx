@@ -25,46 +25,41 @@ export default function Filters() {
   const { gender, ageRange, orderBy } = filters;
 
   return (
-    <div className="shadow-md py-2">
-      <div className="flex flex-row justify-around items-center">
+    <div className="shadow-md py-2 px-2">
+      {/* Outer container becomes column on small screens */}
+      <div className="flex flex-col md:flex-row md:justify-around md:items-center gap-4 flex-wrap">
+        
+        {/* Results Count */}
         <div className="flex gap-2 items-center">
-          <div className="text-default font-semibold text-xl">
+          <div className="text-default font-semibold text-lg md:text-xl">
             Results:{" "}
             {isPending ? (
-              <Spinner
-                size="sm"
-                color="default"
-              />
+              <Spinner size="sm" color="default" />
             ) : (
               totalCount
             )}
           </div>
         </div>
 
+        {/* Gender buttons */}
         <div className="flex gap-2 items-center">
-          <div>Gender:</div>
-          {genderList.map(
-            ({ icon: Icon, value }) => (
-              <Button
-                key={value}
-                size="sm"
-                isIconOnly
-                color="default"
-                variant={
-                  gender.includes(value)
-                    ? "solid"
-                    : "light"
-                }
-                onClick={() =>
-                  selectGender(value)
-                }
-              >
-                <Icon size={24} />
-              </Button>
-            )
-          )}
+          <div className="text-sm md:text-base">Gender:</div>
+          {genderList.map(({ icon: Icon, value }) => (
+            <Button
+              key={value}
+              size="sm"
+              isIconOnly
+              color="default"
+              variant={gender.includes(value) ? "solid" : "light"}
+              onClick={() => selectGender(value)}
+            >
+              <Icon size={20} />
+            </Button>
+          ))}
         </div>
-        <div className="flex flex-row items-center gap-2 w-1/4">
+
+        {/* Age slider */}
+        <div className="flex flex-col md:flex-row items-center gap-2 w-full md:w-1/4">
           <Slider
             label="Age range"
             size="sm"
@@ -73,23 +68,23 @@ export default function Filters() {
             defaultValue={ageRange}
             aria-label="Age range slider"
             color="foreground"
-            onChangeEnd={(value) =>
-              selectAge(value as number[])
-            }
+            onChangeEnd={(value) => selectAge(value as number[])}
           />
         </div>
+
+        {/* With photo switch */}
         <div className="flex flex-col items-center">
-          <p className="text-sm">With photo</p>
+          <p className="text-xs md:text-sm">With photo</p>
           <Switch
             color="default"
             defaultSelected
             size="sm"
-            onChange={(checked) =>
-              selectWithPhoto(checked)
-            }
+            onChange={(checked) => selectWithPhoto(checked)}
           />
         </div>
-        <div className="w-1/4">
+
+        {/* Order By dropdown */}
+        <div className="w-full md:w-1/4">
           <Select
             size="sm"
             fullWidth
@@ -101,10 +96,7 @@ export default function Filters() {
             onSelectionChange={selectOrder}
           >
             {orderByList.map((item) => (
-              <SelectItem
-                key={item.value}
-             
-              >
+              <SelectItem key={item.value}>
                 {item.label}
               </SelectItem>
             ))}

@@ -6,7 +6,7 @@ import Link from "next/link";
 
   return (
       <div className="flex flex-col justify-center items-center mt-20 gap-6 text-default">
-      <h1 className="text-4xl font-bold">
+      <h1 className="text-4xl font-bold text-center">
         Welcome to MatchMe App
       </h1>
       {session ? (

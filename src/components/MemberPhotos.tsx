@@ -62,24 +62,29 @@ export default function MemberPhotos({
   };
 
   return (
-    <div className="grid grid-cols-5 gap-3 p-5">
+    <div
+      className="
+        grid gap-3 p-5
+        grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5
+      "
+    >
       {photos &&
         photos.map((photo) => (
           <div
             key={photo.id}
-            className="relative"
+            className="relative group"
           >
             <MemberImage photo={photo} />
+
             {editing && (
               <>
+                {/* Star Button */}
                 <div
                   onClick={() => onSetMain(photo)}
-                  className="absolute top-3 left-3 z-50"
+                  className="absolute top-2 left-2 z-50"
                 >
                   <StarButton
-                    selected={
-                      photo.url === mainImageUrl
-                    }
+                    selected={photo.url === mainImageUrl}
                     loading={
                       loading.isLoading &&
                       loading.type === "main" &&
@@ -87,9 +92,11 @@ export default function MemberPhotos({
                     }
                   />
                 </div>
+
+                {/* Delete Button */}
                 <div
                   onClick={() => onDelete(photo)}
-                  className="absolute top-3 right-3 z-50"
+                  className="absolute top-2 right-2 z-50"
                 >
                   <DeleteButton
                     loading={
